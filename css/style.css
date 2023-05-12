@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,23 +45,6 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-html, body {
-  overflow: hidden; /* Запрещаем прокрутку страницы */
-  height: 100%; /* Устанавливаем высоту на 100% */
-  margin: 0; /* Убираем поля */
-  padding: 0; /* Убираем отступы */
-}
-
-body {
-  transform-origin: top left; /* Устанавливаем точку трансформации в верхнем левом углу */
-  transform: rotate(90deg) translateY(-100%); /* Поворачиваем экран на 90 градусов и сдвигаем на высоту экрана */
-  width: 100vh; /* Устанавливаем ширину на высоту экрана */
-  height: 100vw; /* Устанавливаем высоту на ширину экрана */
-  overflow-x: hidden; /* Запрещаем прокрутку по горизонтали */
-  overflow-y: scroll; /* Разрешаем прокрутку по вертикали */
-  scroll-behavior: smooth; /* Добавляем плавный скролл */
 }
 
 .container {
