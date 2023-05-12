@@ -1,5 +1,13 @@
 'use strict';
 
+function init(){
+  const widthOutput = 480;
+
+  if(outerWidth <= widthOutput){
+    document.body.style.transform = 'rotate(90deg)';
+  }
+};
+
 function changeHair(imageUrl) {
     const hair = document.querySelector('.hair');
     hair.style.backgroundImage = `url(${imageUrl})`;
@@ -19,3 +27,5 @@ function changeHair(imageUrl) {
     const mouth = document.querySelector('.mouth');
     mouth.style.backgroundImage = `url(${imageUrl})`;
   }
+
+  init();
