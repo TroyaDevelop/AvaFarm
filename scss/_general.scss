@@ -1,3 +1,11 @@
+body{
+
+  @include tablet{
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+}
+
 .container{
   max-width: 1138px;
   margin: 0 auto;

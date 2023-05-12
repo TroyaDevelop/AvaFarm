@@ -47,6 +47,13 @@ table {
   border-spacing: 0;
 }
 
+@media (max-width: 1080px) {
+  body {
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+}
+
 .container {
   max-width: 1138px;
   margin: 0 auto;
@@ -140,6 +147,7 @@ table {
   align-items: center;
   margin-top: 20px;
 }
+
 .controls button {
   margin: 0 10px;
 }/*# sourceMappingURL=style.css.map */
