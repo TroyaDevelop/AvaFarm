@@ -1,9 +1,5 @@
 'use strict';
 
-function init(){
-  screen.orientation.lock("landscape-primary");
-};
-
 function changeHair(imageUrl) {
     const hair = document.querySelector('.hair');
     hair.style.backgroundImage = `url(${imageUrl})`;
@@ -23,5 +19,3 @@ function changeHair(imageUrl) {
     const mouth = document.querySelector('.mouth');
     mouth.style.backgroundImage = `url(${imageUrl})`;
   }
-
-  init();
