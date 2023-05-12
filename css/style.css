@@ -81,6 +81,7 @@ body {
 @media (max-width: 1080px) {
   .character {
     flex-direction: row;
+    height: 100vh;
   }
 }
 
