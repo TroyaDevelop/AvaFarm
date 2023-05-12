@@ -5,6 +5,7 @@ function init(){
 
   if(outerWidth <= widthOutput){
     document.body.style.transform = 'rotate(90deg)';
+    screen.orientation.lock("landscape");
   }
 };
 
