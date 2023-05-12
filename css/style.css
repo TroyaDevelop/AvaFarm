@@ -22,16 +22,36 @@
 
 .body {
   position: relative;
+  z-index: 0;
+}
+
+.underwear {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/underwear.png");
+  background-size: cover;
+  position: absolute;
+  right: 0px;
+  z-index: 1;
 }
 
 .hair {
-  width: 100px;
-  height: 100px;
-  background-image: none;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/hair1.png");
   background-size: cover;
   position: absolute;
-  top: 60px;
-  left: 60px;
+  top: 0px;
+  z-index: 1;
+}
+
+.brows {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/brows1.png");
+  background-size: cover;
+  position: absolute;
+  top: 0px;
 }
 
 .eyes {
@@ -41,6 +61,7 @@
   background-size: cover;
   position: absolute;
   top: 0px;
+  z-index: 0;
 }
 
 .mouth {
