@@ -1,5 +1,14 @@
 'use strict';
 
+function handleResize() {
+  if (window.innerWidth < window.innerHeight) {
+    document.body.style.transform = "rotate(0deg)";
+    alert("Пожалуйста, поверните устройство в портретный режим.");
+  }
+}
+
+window.addEventListener("resize", handleResize, false);
+
 function changeHair(imageUrl) {
     const hair = document.querySelector('.hair');
     hair.style.backgroundImage = `url(${imageUrl})`;
