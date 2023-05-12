@@ -1,17 +1,5 @@
 'use strict';
 
-function init(){
-  if (window.orientation !== undefined) {
-    screen.orientation.lock('landscape');
-    
-    window.addEventListener('orientationchange', function () {
-      if (screen.orientation.type !== 'landscape-primary') {
-        alert('Пожалуйста, поверните устройство в альбомную ориентацию');
-      }
-    });
-  }
-};
-
 function changeHair(imageUrl) {
     const hair = document.querySelector('.hair');
     hair.style.backgroundImage = `url(${imageUrl})`;
@@ -31,5 +19,3 @@ function changeHair(imageUrl) {
     const mouth = document.querySelector('.mouth');
     mouth.style.backgroundImage = `url(${imageUrl})`;
   }
-
-  init();
