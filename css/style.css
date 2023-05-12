@@ -47,10 +47,6 @@ table {
   border-spacing: 0;
 }
 
-body {
-  touch-action: none;
-}
-
 .container {
   max-width: 1138px;
   margin: 0 auto;
@@ -81,7 +77,6 @@ body {
 @media (max-width: 1080px) {
   .character {
     flex-direction: row;
-    height: 75%;
   }
 }
 
