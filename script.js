@@ -20,11 +20,11 @@ body.onload = function() {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(body, 250, 0, 277, 630);
-  ctx.drawImage(underwear, 250, 0, 277, 630);
-  ctx.drawImage(hair, 250, 0, 277, 630);
-  ctx.drawImage(eyes, 250, 0, 277, 630);
-  ctx.drawImage(mouth, 250, 0, 277, 630);
+  ctx.drawImage(body, 250, -40, 277, 700);
+  ctx.drawImage(underwear, 250, -40, 277, 700);
+  ctx.drawImage(hair, 250, -40, 277, 700);
+  ctx.drawImage(eyes, 250, -40, 277, 700);
+  ctx.drawImage(mouth, 250, -40, 277, 700);
 }
 
 function changeHair(imageUrl) {
