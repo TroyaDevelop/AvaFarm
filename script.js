@@ -1,41 +1,49 @@
 'use strict';
 
-window.addEventListener("orientationchange", function() {
-    if (Math.abs(window.orientation) !== 0) {
-        // Запрещаем поворот экрана
-        document.body.style.transform = "rotate(0deg)";
-        document.body.style.webkitTransform = "rotate(0deg)";
-        document.body.style.mozTransform = "rotate(0deg)";
-        document.body.style.msTransform = "rotate(0deg)";
-        document.body.style.oTransform = "rotate(0deg)";
-        document.body.style.position = "fixed";
-        document.body.style.width = "100%";
-        document.body.style.height = "100%";
-        document.body.style.top = "0";
-        document.body.style.left = "0";
-        document.body.style.right = "0";
-        document.body.style.bottom = "0";
-        // Показываем сообщение об ошибке
-        alert("Пожалуйста, не поворачивайте экран!");
-    }
-});
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const body = new Image();
+body.src = './img/body.png';
+const underwear = new Image();
+underwear.src = './img/underwear.png';
+const hair = new Image();
+hair.src = './img/hair1.png';
+const eyes = new Image();
+eyes.src = './img/eye1.png';
+const mouth = new Image();
+mouth.src = './img/mouth1.png';
+
+body.onload = function() {
+  draw();
+};
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(body, 250, 0, 277, 630);
+  ctx.drawImage(underwear, 250, 0, 277, 630);
+  ctx.drawImage(hair, 250, 0, 277, 630);
+  ctx.drawImage(eyes, 250, 0, 277, 630);
+  ctx.drawImage(mouth, 250, 0, 277, 630);
+}
 
 function changeHair(imageUrl) {
-    const hair = document.querySelector('.hair');
-    hair.style.backgroundImage = `url(${imageUrl})`;
-  }
+  hair.src = imageUrl;
+  hair.onload = function() {
+    draw();
+  };
+}
 
-  function changeBrows(imageUrl) {
-    const brows = document.querySelector('.brows');
-    brows.style.backgroundImage = `url(${imageUrl})`;
-  }
-  
-  function changeEyes(imageUrl) {
-    const eyes = document.querySelector('.eyes');
-    eyes.style.backgroundImage = `url(${imageUrl})`;
-  }
-  
-  function changeMouth(imageUrl) {
-    const mouth = document.querySelector('.mouth');
-    mouth.style.backgroundImage = `url(${imageUrl})`;
-  }
+function changeEyes(imageUrl) {
+  eyes.src = imageUrl;
+  eyes.onload = function() {
+    draw();
+  };
+}
+
+function changeMouth(imageUrl) {
+  mouth.src = imageUrl;
+  mouth.onload = function() {
+    draw();
+  };
+}
