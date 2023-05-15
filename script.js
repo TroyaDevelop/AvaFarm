@@ -3,61 +3,104 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const editorSprite = new Image();
-editorSprite.src = './img/editor.png'
-const backgroundSprite = new Image();
-backgroundSprite.src = './img/background.png'
-const framesSprite = new Image();
-framesSprite.src = './img/frames.png'
+const sprites = {
+  background: new Image(),
+  editor: new Image(),
+  frames: new Image(),
+  genderM: new Image(),
+  genderF: new Image(),
+  bodyF: new Image(),
+  underwearF: new Image(),
+  hair: new Image(),
+  eyes: new Image(),
+  mouth: new Image(),
 
-const body = new Image();
-body.src = './img/body.png';
-const underwear = new Image();
-underwear.src = './img/underwear.png';
-const hair = new Image();
-hair.src = './img/hair1.png';
-const eyes = new Image();
-eyes.src = './img/eye1.png';
-const mouth = new Image();
-mouth.src = './img/mouth1.png';
+  init(){
+    this.background.src = './img/background.png';
+    this.editor.src = './img/editor.png';
+    this.frames.src = './img/frames.png';
+    this.genderM.src =  './img/genderM.png';
+    this.genderF.src =  './img/genderF.png';
+    this.bodyF.src = './img/body.png';
+    this.underwearF.src = './img/underwear.png';
+    this.hair.src = './img/hair1.png';
+    this.eyes.src = './img/eye1.png';
+    this.mouth.src = './img/mouth1.png';
+  },
 
-body.onload = function() {
-  drawChar();
 };
 
-function drawChar() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawEditor();
-  ctx.drawImage(body, 755, 167, 277/1.6, 630/1.5);
-  ctx.drawImage(underwear, 755, 167, 277/1.6, 630/1.5);
-  ctx.drawImage(hair, 755, 167, 277/1.6, 630/1.5);
-  ctx.drawImage(eyes, 755, 167, 277/1.6, 630/1.5);
-  ctx.drawImage(mouth, 755, 167, 277/1.6, 630/1.5);
-}
+const game = {
+  sprites,
 
-function drawEditor(){
-  ctx.drawImage(backgroundSprite, 0, 0, 1920/2, 1300/2);
-  ctx.drawImage(editorSprite, 0, 0, 1920/2, 1300/2);
-  ctx.drawImage(framesSprite, 313, 140, 765/2, 782/2);
-}
+  x: null,
+  y: null,
+  gender: 0,
 
-function changeHair(imageUrl) {
-  hair.src = imageUrl;
-  hair.onload = function() {
-    drawChar();
-  };
-}
+  init(){
+    this.sprites.init();
+    this.drawEditor();
+    this.drawChar();
+  },
 
-function changeEyes(imageUrl) {
-  eyes.src = imageUrl;
-  eyes.onload = function() {
-    drawChar();
-  };
-}
+  chooseGender(){
+  },
 
-function changeMouth(imageUrl) {
-  mouth.src = imageUrl;
-  mouth.onload = function() {
-    drawChar();
-  };
-}
+  drawChar(){
+    this.drawEditor();
+    ctx.drawImage(this.sprites.bodyF, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.sprites.underwearF, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.sprites.hair, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.sprites.eyes, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.sprites.mouth, 755, 167, 277/1.6, 630/1.5);
+  },
+
+  drawEditor(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(this.sprites.background, 0, 0, 1920/2, 1300/2);
+    ctx.drawImage(this.sprites.editor, 0, 0, 1920/2, 1300/2);
+    ctx.drawImage(this.sprites.frames, 313, 140, 765/2, 782/2);
+    if(this.gender === 0){
+      ctx.drawImage(this.sprites.genderF, 43, 507, 387/2, 274/2);
+    } else {
+      ctx.drawImage(this.sprites.genderM, 43, 507, 387/2, 274/2);
+    }
+  },
+
+  changeHair(imageUrl){
+    this.sprites.hair.src = imageUrl;
+    this.sprites.hair.onload = function() {
+      game.drawChar();
+    };
+  },
+
+  changeEyes(imageUrl){
+    this.sprites.eyes.src = imageUrl;
+    this.sprites.eyes.onload = function() {
+      game.drawChar();
+    };
+  },
+
+  changeMouth(imageUrl){
+    this.sprites.mouth.src = imageUrl;
+    this.sprites.mouth.onload = function() {
+      game.drawChar();
+    };
+  },
+
+  handleClick(event){
+    game.x = event.offsetX;
+    game.y = event.offsetY;
+
+    if(this.x <= 106 && this.x >= 55 && this.y <= 406 && this.y >= 355){
+      this.gender = 0;
+    } else if(this.x <= 144 && this.x >= 107 && this.y <= 398 && this.y >= 358){
+      this.gender = 1;
+    }
+    this.drawChar();
+  }
+};
+
+canvas.addEventListener("click", event => game.handleClick(event));
+
+game.init();
