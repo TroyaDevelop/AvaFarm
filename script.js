@@ -76,22 +76,22 @@ const editor = {
     posX: 770,
     posY: 120,
     eye1: {
-      xRigth: 585,
-      xLeft: 565,
-      yBottom: 106,
-      yTop: 86,
+      xRigth: 796,
+      xLeft: 781,
+      yBottom: 153,
+      yTop: 137,
     },
     eye2: {
-      xRigth: 604,
-      xLeft: 584,
-      yBottom: 106,
-      yTop: 86,
+      xRigth: 823,
+      xLeft: 810,
+      yBottom: 155,
+      yTop: 137,
     },
     eye3: {
-      xRigth: 627,
-      xLeft: 607,
-      yBottom: 106,
-      yTop: 86,
+      xRigth: 851,
+      xLeft: 839,
+      yBottom: 155,
+      yTop: 137,
     },
   },
   mouthPalette: {
@@ -101,22 +101,22 @@ const editor = {
     posX: 775,
     posY: 133,
     mouth1: {
-      xRigth: 585,
-      xLeft: 565,
-      yBottom: 106,
-      yTop: 86,
+      xRigth: 796,
+      xLeft: 777,
+      yBottom: 155,
+      yTop: 135,
     },
     mouth2: {
-      xRigth: 604,
-      xLeft: 584,
-      yBottom: 106,
-      yTop: 86,
+      xRigth: 825,
+      xLeft: 807,
+      yBottom: 149,
+      yTop: 136,
     },
     mouth3: {
-      xRigth: 627,
-      xLeft: 607,
-      yBottom: 106,
-      yTop: 86,
+      xRigth: 853,
+      xLeft: 838,
+      yBottom: 152,
+      yTop: 138,
     },
   },
 
@@ -126,25 +126,29 @@ const editor = {
     this.render();
   },
 
-  handleClick(event){
-    editor.x = event.offsetX;
-    editor.y = event.offsetY;
+  handleClick(event) {
+    const canvasRect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / canvasRect.width;
+    const scaleY = canvas.height / canvasRect.height;
+    
+    this.x = (event.clientX - canvasRect.left) * scaleX;
+    this.y = (event.clientY - canvasRect.top) * scaleY;
 
-    if(this.x <= 106 && this.x >= 55 && this.y <= 406 && this.y >= 355){
+    if(this.x <= 134 && this.x >= 90 && this.y <= 602 && this.y >= 539){
       this.gender = 0;
-    } else if(this.x <= 144 && this.x >= 107 && this.y <= 398 && this.y >= 358){
+    } else if(this.x <= 193 && this.x >= 156 && this.y <= 593 && this.y >= 541){
       this.gender = 1;
     }
 
-    if(this.x <= 175 && this.x >= 28 && this.y <= 332 && this.y >= 114 ){
+    if(this.x <= 237 && this.x >= 38 && this.y <= 517 && this.y >= 168 ){
       this.changeCategory(this.x, this.y);
     }
 
-    if(this.x <= 673 && this.x >= 560 && this.y <= 112 && this.y >= 70 && this.currentPalette === 0){
+    if(this.x <= 916 && this.x >= 769 && this.y <= 165 && this.y >= 103 && this.currentPalette === 0){
       this.changeEyesColor(this.x, this.y);
     }
 
-    if(this.x <= 673 && this.x >= 560 && this.y <= 112 && this.y >= 70 && this.currentPalette === 1){
+    if(this.x <= 916 && this.x >= 769 && this.y <= 165 && this.y >= 103 && this.currentPalette === 1){
       this.changeMouthColor(this.x, this.y);
     }
 
@@ -196,9 +200,9 @@ const editor = {
   },
 
   changeCategory(x, y){
-    if(x <= 115 && x >= 58 && y <= 187 && y >= 170){
+    if(x <= 157 && x >= 80 && y <= 285 && y >= 252){
       this.currentPalette = 0;
-    } else if(x <= 112 && x >= 58 && y <= 260 && y >= 242){
+    } else if(x <= 142 && x >= 79 && y <= 393 && y >= 365){
       this.currentPalette = 1;
     }
   },
