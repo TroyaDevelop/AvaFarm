@@ -12,11 +12,16 @@ const sprites = {
   genderF: new Image(),
   eyesPalette: new Image(),
   mouthPalette: new Image(),
+  paletteText: new Image(),
   bodyF: new Image(),
   underwearF: new Image(),
   hair: new Image(),
-  eyes: new Image(),
-  mouth: new Image(),
+  eye1: new Image(),
+  eye2: new Image(),
+  eye3: new Image(),
+  mouth1: new Image(),
+  mouth2: new Image(),
+  mouth3: new Image(),
 
   init(){
     this.background.src = './img/background.png';
@@ -25,18 +30,40 @@ const sprites = {
     this.categories.src = './img/categories.png';
     this.genderM.src =  './img/genderM.png';
     this.genderF.src =  './img/genderF.png';
-    this.eyesPalette.src = './img/eyescolor.png';
-    this.mouthPalette.src = './img/mouthcolor.png';
+    this.eyesPalette.src = './img/eyesPalette.png';
+    this.mouthPalette.src = './img/mouthPalette.png';
+    this.paletteText.src = './img/paletteText.png';
     this.bodyF.src = './img/body.png';
     this.underwearF.src = './img/underwear.png';
     this.hair.src = './img/hair1.png';
-    this.eyes.src = './img/eye1.png';
-    this.mouth.src = './img/mouth1.png';
+    this.eye1.src = './img/eye1.png';
+    this.eye2.src = './img/eye2.png';
+    this.eye3.src = './img/eye3.png';
+    this.mouth1.src = './img/mouth1.png';
+    this.mouth2.src = './img/mouth2.png';
+    this.mouth3.src = './img/mouth3.png';
   },
+};
+
+const character = {
+  sprites,
+
+  body: null,
+  hair: null,
+  eyes: null,
+  mouth: null,
+
+  init(){
+    this.body = this.sprites.bodyF;
+    this.hair =this.sprites.hair;
+    this.eyes = this.sprites.eye1;
+    this.mouth = this.sprites.mouth1;
+  }
 };
 
 const editor = {
   sprites,
+  character,
 
   x: null,
   y: null,
@@ -44,49 +71,58 @@ const editor = {
   currentPalette: 0,
   eyesPalette: {
     currentColor: 0,
+    width: 270/1.8,
+    height:  88/1.8,
+    posX: 770,
+    posY: 120,
     eye1: {
-      xRigth: 592,
-      xLeft: 566,
-      yBottom: 104,
-      yTop: 76,
+      xRigth: 585,
+      xLeft: 565,
+      yBottom: 106,
+      yTop: 86,
     },
     eye2: {
-      xRigth: 629,
-      xLeft: 605,
-      yBottom: 102,
-      yTop: 79,
+      xRigth: 604,
+      xLeft: 584,
+      yBottom: 106,
+      yTop: 86,
     },
     eye3: {
-      xRigth: 669,
-      xLeft: 631,
-      yBottom: 100,
-      yTop: 80,
+      xRigth: 627,
+      xLeft: 607,
+      yBottom: 106,
+      yTop: 86,
     },
   },
   mouthPalette: {
     currentColor: 0,
+    width: 210/1.8,
+    height:  47/1.8,
+    posX: 775,
+    posY: 133,
     mouth1: {
-      xRigth: 592,
-      xLeft: 566,
-      yBottom: 104,
-      yTop: 76,
+      xRigth: 585,
+      xLeft: 565,
+      yBottom: 106,
+      yTop: 86,
     },
     mouth2: {
-      xRigth: 629,
-      xLeft: 605,
-      yBottom: 102,
-      yTop: 79,
+      xRigth: 604,
+      xLeft: 584,
+      yBottom: 106,
+      yTop: 86,
     },
     mouth3: {
-      xRigth: 669,
-      xLeft: 631,
-      yBottom: 100,
-      yTop: 80,
+      xRigth: 627,
+      xLeft: 607,
+      yBottom: 106,
+      yTop: 86,
     },
   },
 
   init(){
     this.sprites.init();
+    this.character.init();
     this.render();
   },
 
@@ -116,11 +152,11 @@ const editor = {
   },
 
   drawChar(){
-    ctx.drawImage(this.sprites.bodyF, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.character.body, 755, 167, 277/1.6, 630/1.5);
     ctx.drawImage(this.sprites.underwearF, 755, 167, 277/1.6, 630/1.5);
-    ctx.drawImage(this.sprites.hair, 755, 167, 277/1.6, 630/1.5);
-    ctx.drawImage(this.sprites.eyes, 755, 167, 277/1.6, 630/1.5);
-    ctx.drawImage(this.sprites.mouth, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.character.hair, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.character.eyes, 755, 167, 277/1.6, 630/1.5);
+    ctx.drawImage(this.character.mouth, 755, 167, 277/1.6, 630/1.5);
   },
 
   drawEditor(){
@@ -128,6 +164,7 @@ const editor = {
     ctx.drawImage(this.sprites.editor, 0, 0, 1920/2, 1300/2);
     ctx.drawImage(this.sprites.frames, 313, 140, 765/2, 782/2);
     ctx.drawImage(this.sprites.categories, 70, 200, 234/1.5, 314/1.2);
+    ctx.drawImage(this.sprites.paletteText, 780, 103, 223/2, 59/2);
     this.drawPalette();
 
     if(this.gender === 0){
@@ -139,9 +176,9 @@ const editor = {
 
   drawPalette(){
     if(this.currentPalette === 0){
-      ctx.drawImage(this.sprites.eyesPalette, 770, 95, 270/1.2, 88/1.2);
+      ctx.drawImage(this.sprites.eyesPalette, this.eyesPalette.posX, this.eyesPalette.posY, this.eyesPalette.width, this.eyesPalette.height);
     } else if(this.currentPalette === 1){
-      ctx.drawImage(this.sprites.mouthPalette, 770, 95, 270/1.2, 88/1.2);
+      ctx.drawImage(this.sprites.mouthPalette, this.mouthPalette.posX, this.mouthPalette.posY, this.mouthPalette.width, this.mouthPalette.height);
     };
   },
 
@@ -154,13 +191,6 @@ const editor = {
   changeHair(imageUrl){
     this.sprites.hair.src = imageUrl;
     this.sprites.hair.onload = function() {
-      editor.render();
-    };
-  },
-
-  changeMouth(imageUrl){
-    this.sprites.mouth.src = imageUrl;
-    this.sprites.mouth.onload = function() {
       editor.render();
     };
   },
@@ -183,11 +213,11 @@ const editor = {
     };
 
     if(this.mouthPalette.currentColor === 0){
-      this.sprites.mouth.src = './img/mouth1.png';
+      this.character.mouth = this.sprites.mouth1;
     } else if(this.mouthPalette.currentColor === 1){
-      this.sprites.mouth.src = './img/mouth2.png';
+      this.character.mouth = this.sprites.mouth2;
     } else if(this.mouthPalette.currentColor === 2){
-      this.sprites.mouth.src = './img/mouth3.png';
+      this.character.mouth = this.sprites.mouth3;
     }
   },
   changeEyesColor(x, y){
@@ -200,11 +230,11 @@ const editor = {
     };
 
     if(this.eyesPalette.currentColor === 0){
-      this.sprites.eyes.src = './img/eye1.png';
+      this.character.eyes = this.sprites.eye1;
     } else if(this.eyesPalette.currentColor === 1){
-      this.sprites.eyes.src = './img/eye2.png';
+      this.character.eyes = this.sprites.eye2;
     } else if(this.eyesPalette.currentColor === 2){
-      this.sprites.eyes.src = './img/eye3.png';
+      this.character.eyes = this.sprites.eye3;
     }
   },
   }
