@@ -10,6 +10,8 @@ const sprites = {
   categories: new Image(),
   genderM: new Image(),
   genderF: new Image(),
+  skinPalette: new Image(),
+  hairPalette: new Image(),
   eyesPalette: new Image(),
   mouthPalette: new Image(),
   paletteText: new Image(),
@@ -30,6 +32,8 @@ const sprites = {
     this.categories.src = './img/categories.png';
     this.genderM.src =  './img/genderM.png';
     this.genderF.src =  './img/genderF.png';
+    this.skinPalette.src = './img/skinPalette.png';
+    this.hairPalette.src = './img/hairPalette.png';
     this.eyesPalette.src = './img/eyesPalette.png';
     this.mouthPalette.src = './img/mouthPalette.png';
     this.paletteText.src = './img/paletteText.png';
@@ -69,6 +73,22 @@ const editor = {
   y: null,
   gender: 0,
   currentPalette: 0,
+  skinPalette: {
+    currentColor: 0,
+    width: 270/1.8,
+    height:  88/1.8,
+    posX: 770,
+    posY: 120,
+  },
+
+  hairPalette: {
+    currentColor: 0,
+    width: 270/1.8,
+    height:  88/1.8,
+    posX: 770,
+    posY: 120,
+  },
+
   eyesPalette: {
     currentColor: 0,
     width: 270/1.8,
@@ -183,7 +203,12 @@ const editor = {
       ctx.drawImage(this.sprites.eyesPalette, this.eyesPalette.posX, this.eyesPalette.posY, this.eyesPalette.width, this.eyesPalette.height);
     } else if(this.currentPalette === 1){
       ctx.drawImage(this.sprites.mouthPalette, this.mouthPalette.posX, this.mouthPalette.posY, this.mouthPalette.width, this.mouthPalette.height);
-    };
+    } else if(this.currentPalette === 2){
+      ctx.drawImage(this.sprites.skinPalette, this.skinPalette.posX, this.skinPalette.posY, this.skinPalette.width, this.skinPalette.height);
+    } else if(this.currentPalette === 3){
+      ctx.drawImage(this.sprites.hairPalette, this.hairPalette.posX, this.hairPalette.posY, this.hairPalette.width, this.hairPalette.height);
+    }
+    
   },
 
   render(){
@@ -204,7 +229,11 @@ const editor = {
       this.currentPalette = 0;
     } else if(x <= 142 && x >= 79 && y <= 393 && y >= 365){
       this.currentPalette = 1;
-    }
+    } else if(x <= 145 && x >= 79 && y <= 231 && y >= 201){
+      this.currentPalette = 2;
+    } else if(x <= 220 && x >= 79 && y <= 443 && y >= 420){
+      this.currentPalette = 3;
+    } 
   },
 
   changeMouthColor(x, y){
@@ -224,6 +253,15 @@ const editor = {
       this.character.mouth = this.sprites.mouth3;
     }
   },
+
+  chengeSkinColor(){
+
+  },
+
+  changeHairColor(){
+
+  },
+
   changeEyesColor(x, y){
     if(x <= this.eyesPalette.eye1.xRigth && x >= this.eyesPalette.eye1.xLeft && y <= this.eyesPalette.eye1.yBottom && y >= this.eyesPalette.eye1.yTop){
       this.eyesPalette.currentColor = 0;
