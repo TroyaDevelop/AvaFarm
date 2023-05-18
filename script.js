@@ -15,9 +15,15 @@ const sprites = {
   eyesPalette: new Image(),
   mouthPalette: new Image(),
   paletteText: new Image(),
+  iconHair1:  new Image(),
+  iconHair2:  new Image(),
+  iconEyes1:  new Image(),
+  iconEyes2:  new Image(),
+  iconMouth1: new Image(),
   bodyF: new Image(),
   underwearF: new Image(),
-  hair: new Image(),
+  hair1: new Image(),
+  hair2: new Image(),
   eye1: new Image(),
   eye2: new Image(),
   eye3: new Image(),
@@ -37,9 +43,15 @@ const sprites = {
     this.eyesPalette.src = './img/eyesPalette.png';
     this.mouthPalette.src = './img/mouthPalette.png';
     this.paletteText.src = './img/paletteText.png';
+    this.iconHair1.src = './img/iconHair1.png';
+    this.iconHair2.src = './img/iconHair2.png';
+    this.iconEyes1.src = './img/iconEyes1.png';
+    this.iconEyes2.src = './img/iconEyes2.png';
+    this.iconMouth1.src = './img/iconMouth1.png';
     this.bodyF.src = './img/body.png';
     this.underwearF.src = './img/underwear.png';
-    this.hair.src = './img/hair1.png';
+    this.hair1.src = './img/hair1.png';
+    this.hair2.src = './img/hair2.png';
     this.eye1.src = './img/eye1.png';
     this.eye2.src = './img/eye2.png';
     this.eye3.src = './img/eye3.png';
@@ -59,7 +71,7 @@ const character = {
 
   init(){
     this.body = this.sprites.bodyF;
-    this.hair =this.sprites.hair;
+    this.hair =this.sprites.hair1;
     this.eyes = this.sprites.eye1;
     this.mouth = this.sprites.mouth1;
   }
@@ -71,6 +83,8 @@ const editor = {
 
   x: null,
   y: null,
+  iconWidth: 227/2,
+  iconHeigth: 226/2,
   gender: 0,
   currentPalette: 0,
   skinPalette: {
@@ -81,6 +95,10 @@ const editor = {
     posY: 120,
   },
 
+  hair: {
+    hair1: null,
+    hair2: null,
+  },
   hairPalette: {
     currentColor: 0,
     width: 270/1.8,
@@ -89,6 +107,10 @@ const editor = {
     posY: 120,
   },
 
+  eyes: {
+    eyes1: null,
+    eyes2: null,
+  },
   eyesPalette: {
     currentColor: 0,
     width: 270/1.8,
@@ -113,6 +135,10 @@ const editor = {
       yBottom: 155,
       yTop: 137,
     },
+  },
+
+  mouth: {
+    mouth1: null,
   },
   mouthPalette: {
     currentColor: 0,
@@ -164,6 +190,10 @@ const editor = {
       this.changeCategory(this.x, this.y);
     }
 
+    if(this.x <= 730 && this.x >= 280 && this.y <= 540 && this.y >= 139 ){
+      this.changePart(this.x, this.y);
+    }
+
     if(this.x <= 916 && this.x >= 769 && this.y <= 165 && this.y >= 103 && this.currentPalette === 0){
       this.changeEyesColor(this.x, this.y);
     }
@@ -186,9 +216,9 @@ const editor = {
   drawEditor(){
     ctx.drawImage(this.sprites.background, 0, 0, 1920/2, 1300/2);
     ctx.drawImage(this.sprites.editor, 0, 0, 1920/2, 1300/2);
-    ctx.drawImage(this.sprites.frames, 313, 140, 765/2, 782/2);
     ctx.drawImage(this.sprites.categories, 70, 200, 234/1.5, 314/1.2);
     ctx.drawImage(this.sprites.paletteText, 780, 103, 223/2, 59/2);
+    this.drawList();
     this.drawPalette();
 
     if(this.gender === 0){
@@ -211,17 +241,40 @@ const editor = {
     
   },
 
+  drawList(){
+    let list = this.currentPalette;
+    let startPosX = 310;
+    let startPosY = 170;
+    if(list === 3){
+      for(let row = 1; row <= 2; row++){
+        ctx.drawImage(this.sprites[`iconHair${row}`], startPosX, startPosY, this.iconWidth, this.iconHeigth);
+        startPosX += 130;
+      }
+    } else if(list === 0){
+      for(let row = 1; row <= 2; row++){
+        ctx.drawImage(this.sprites[`iconEyes${row}`], startPosX, startPosY, this.iconWidth, this.iconHeigth);
+        startPosX += 130;
+      }
+    } else if(list === 1){
+      for(let row = 1; row <= 1; row++){
+        ctx.drawImage(this.sprites[`iconMouth${row}`], startPosX, startPosY, this.iconWidth, this.iconHeigth);
+        startPosX += 130;
+      }
+    }
+  },
+
   render(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.drawEditor();
     this.drawChar();
   },
 
-  changeHair(imageUrl){
-    this.sprites.hair.src = imageUrl;
-    this.sprites.hair.onload = function() {
-      editor.render();
-    };
+  changePart(x, y){
+    if(x <= 417 && x >= 314 && y <= 281 && y >= 175 && this.currentPalette === 3){
+      this.character.hair = this.sprites.hair1;
+    } else if(x <= 546 && x >= 444 && y <= 279 && y >= 173 && this.currentPalette === 3){
+      this.character.hair = this.sprites.hair2;
+    }
   },
 
   changeCategory(x, y){
