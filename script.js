@@ -15,6 +15,8 @@ const sprites = {
   eyesPalette: new Image(),
   mouthPalette: new Image(),
   paletteText: new Image(),
+  editorText: new Image(),
+  submitText: new Image(),
   iconHair1:  new Image(),
   iconHair2:  new Image(),
   iconEyes1:  new Image(),
@@ -43,6 +45,8 @@ const sprites = {
     this.eyesPalette.src = './img/eyesPalette.png';
     this.mouthPalette.src = './img/mouthPalette.png';
     this.paletteText.src = './img/paletteText.png';
+    this.editorText.src = './img/editorText.png';
+    this.submitText.src = './img/submitText.png';
     this.iconHair1.src = './img/iconHair1.png';
     this.iconHair2.src = './img/iconHair2.png';
     this.iconEyes1.src = './img/iconEyes1.png';
@@ -218,6 +222,8 @@ const editor = {
     ctx.drawImage(this.sprites.editor, 0, 0, 1920/2, 1300/2);
     ctx.drawImage(this.sprites.categories, 70, 200, 234/1.5, 314/1.2);
     ctx.drawImage(this.sprites.paletteText, 780, 103, 223/2, 59/2);
+    ctx.drawImage(this.sprites.editorText, 115, 25, 220, 80);
+    ctx.drawImage(this.sprites.submitText, 800, 583, 186/2, 55/2);
     this.drawList();
     this.drawPalette();
 
