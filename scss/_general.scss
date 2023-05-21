@@ -10,8 +10,11 @@ canvas {
 
   @include mobile {
     width: 100vw;
-    height: 99vh;
+    height: 100vh;
     object-fit: contain;
+    transform: scale(0.85); /* Измените значение по вашему выбору */
+    transform-origin: top;
+    border: none;
   }
 }
 
