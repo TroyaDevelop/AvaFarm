@@ -3,28 +3,14 @@
   margin: 0 auto;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
 canvas {
-  max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+  border: 1px solid black;
+  width: 85vw;
+  height: 100vh;
 }
 
 .wrapper{
-  width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header{
-  display: none; //Поменять на flex
-  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

@@ -224,7 +224,6 @@ const editor = {
     ctx.drawImage(this.sprites.paletteText, 780, 103, 223/2, 59/2);
     ctx.drawImage(this.sprites.editorText, 115, 25, 220, 80);
     ctx.drawImage(this.sprites.submitText, 800, 583, 186/2, 55/2);
-
     this.drawList();
     this.drawPalette();
 
@@ -339,23 +338,11 @@ const editor = {
       this.character.eyes = this.sprites.eye3;
     }
   },
-
-  };
+  }
 
 const game = {
 
 };
-
-function resizeCanvas() {
-  var container = document.getElementById('canvas-container');
-  var containerWidth = container.offsetWidth;
-  var containerHeight = container.offsetHeight;
-
-  canvas.width = containerWidth;
-  canvas.height = containerHeight;
-}
-
-window.addEventListener('resize', resizeCanvas);
 
 canvas.addEventListener("click", event => editor.handleClick(event));
 
