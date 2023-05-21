@@ -345,7 +345,15 @@ const editor = {
 const game = {
 
 };
+function resizeCanvas() {
+  var canvas = document.getElementById('myCanvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
 
+window.addEventListener('resize', resizeCanvas);
+
+resizeCanvas();
 
 canvas.addEventListener("click", event => editor.handleClick(event));
 

@@ -3,21 +3,24 @@
   margin: 0 auto;
 }
 
-canvas {
-  border: 1px solid black;
-  max-width: 100%;
-  height: auto;
-
-  @include mobile {
-    width: 100vw;
-    height: 100vh;
-    object-fit: contain;
-    transform: scale(0.85); /* Измените значение по вашему выбору */
-    transform-origin: top;
-    border: none;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
 .wrapper{
   display: flex;
