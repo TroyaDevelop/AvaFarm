@@ -3,6 +3,13 @@
   margin: 0 auto;
 }
 
+canvas {
+  border: 1px solid black;
+  width: 90%;
+  height: 99vh;
+}
+
+
 .wrapper{
   display: flex;
   align-items: center;

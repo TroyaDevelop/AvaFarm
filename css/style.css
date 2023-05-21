@@ -52,6 +52,12 @@ table {
   margin: 0 auto;
 }
 
+canvas {
+  border: 1px solid black;
+  width: 90%;
+  height: 99vh;
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -61,10 +67,4 @@ table {
 .header {
   display: none;
   justify-content: center;
-}
-
-canvas {
-  border: 1px solid black;
-  width: 85vw;
-  height: 100vh;
 }/*# sourceMappingURL=style.css.map */
