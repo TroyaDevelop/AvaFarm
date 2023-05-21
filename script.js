@@ -3,6 +3,9 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+canvas.width = 960;
+canvas.height = 640;
+
 const sprites = {
   background: new Image(),
   editor: new Image(),
@@ -204,6 +207,16 @@ const editor = {
 
     if(this.x <= 916 && this.x >= 769 && this.y <= 165 && this.y >= 103 && this.currentPalette === 1){
       this.changeMouthColor(this.x, this.y);
+    }
+
+    if (canvas.requestFullscreen) {
+      canvas.requestFullscreen();
+    } else if (canvas.mozRequestFullScreen) {
+      canvas.mozRequestFullScreen();
+    } else if (canvas.webkitRequestFullscreen) {
+      canvas.webkitRequestFullscreen();
+    } else if (canvas.msRequestFullscreen) {
+      canvas.msRequestFullscreen();
     }
 
     this.render();
