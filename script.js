@@ -350,7 +350,6 @@ const editor = {
 
   toggleFullScreen() {
     if (!document.fullscreenElement) {
-      // Запрос на полноэкранный режим для всего документа
       document.documentElement.requestFullscreen().catch(err => {
         console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
       });

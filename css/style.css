@@ -54,8 +54,8 @@ table {
 
 canvas {
   border: 1px solid black;
-  width: 85vw;
-  height: 99vh;
+  width: 80%;
+  height: 99%;
 }
 
 .wrapper {
