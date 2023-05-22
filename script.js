@@ -209,14 +209,8 @@ const editor = {
       this.changeMouthColor(this.x, this.y);
     }
 
-    if (canvas.requestFullscreen) {
-      canvas.requestFullscreen();
-    } else if (canvas.mozRequestFullScreen) {
-      canvas.mozRequestFullScreen();
-    } else if (canvas.webkitRequestFullscreen) {
-      canvas.webkitRequestFullscreen();
-    } else if (canvas.msRequestFullscreen) {
-      canvas.msRequestFullscreen();
+    if((this.x <= 35 && this.x >= 0 && this.y <= 31 && this.y >= 0)){
+      this.toggleFullScreen();
     }
 
     this.render();
@@ -237,6 +231,8 @@ const editor = {
     ctx.drawImage(this.sprites.paletteText, 780, 103, 223/2, 59/2);
     ctx.drawImage(this.sprites.editorText, 115, 25, 220, 80);
     ctx.drawImage(this.sprites.submitText, 800, 583, 186/2, 55/2);
+    ctx.drawImage(this.sprites.paletteText, 0, 0, 223/2, 59/2); // заменить на кнопку полноэкранного режима
+
     this.drawList();
     this.drawPalette();
 
@@ -351,11 +347,25 @@ const editor = {
       this.character.eyes = this.sprites.eye3;
     }
   },
-  }
+
+  toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      // Запрос на полноэкранный режим для всего документа
+      document.documentElement.requestFullscreen().catch(err => {
+        console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }  
+  };
 
 const game = {
 
 };
+
 
 canvas.addEventListener("click", event => editor.handleClick(event));
 

@@ -55,16 +55,11 @@ table {
 canvas {
   border: 1px solid black;
   width: 85vw;
-  height: 100vh;
+  height: 99vh;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-.header {
-  display: none;
-  justify-content: center;
 }/*# sourceMappingURL=style.css.map */
